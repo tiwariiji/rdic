@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    @apply bg-white text-navy-900 antialiased;
+  }
+}
+
+@layer components {
+  /* Gradient text utility */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-gold-300;
+  }
+
+  /* Gold shimmer button */
+  .btn-gold {
+    @apply relative overflow-hidden bg-gradient-to-r from-gold-500 to-gold-400 text-navy-900 font-bold px-8 py-3 rounded-full transition-all duration-300 hover:shadow-lg hover:shadow-gold-500/40 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  /* Navy ghost button */
+  .btn-outline {
+    @apply border-2 border-white text-white font-bold px-8 py-3 rounded-full transition-all duration-300 hover:bg-white hover:text-navy-900 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  /* Section heading */
+  .section-title {
+    @apply font-serif text-4xl md:text-5xl font-bold text-navy-900 leading-tight;
+  }
+
+  /* Gold underline decoration */
+  .gold-underline::after {
+    content: '';
+    @apply block w-16 h-1 bg-gradient-to-r from-gold-500 to-gold-300 rounded-full mt-3;
+  }
+
+  /* Card base */
+  .card {
+    @apply bg-white rounded-2xl shadow-md border border-gray-100 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-navy-900/10;
+  }
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+
+.marquee-track {
+  animation: marquee 35s linear infinite;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* Reveal animation for scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Loader styles */
+.loader-ring {
+  border-top-color: #f59e0b;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
