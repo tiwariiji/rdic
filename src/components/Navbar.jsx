@@ -46,9 +46,11 @@ export default function Navbar() {
   }
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-navy-950/95 backdrop-blur-md shadow-2xl shadow-navy-950/50' : 'bg-transparent'
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled || open
+          ? 'bg-navy-950/95 backdrop-blur-md shadow-2xl shadow-navy-950/50'
+          : 'bg-transparent'
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -100,7 +102,9 @@ export default function Navbar() {
           {/* Hamburger (mobile) */}
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition"
+            className={`md:hidden text-white p-2 rounded-lg transition ${
+              open ? 'bg-white/15 shadow-lg shadow-navy-950/30' : 'hover:bg-white/10'
+            }`}
             aria-label="Toggle menu"
           >
             {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -113,7 +117,7 @@ export default function Navbar() {
             open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
-          <div className="pb-4 pt-2 flex flex-col gap-1 border-t border-white/10">
+          <div className="mt-2 mb-4 flex flex-col gap-1 rounded-2xl border border-white/10 bg-navy-950/95 p-3 shadow-2xl shadow-navy-950/40 backdrop-blur-xl">
             {NAV_LINKS.map(({ label, href }) => (
               <button
                 key={href}
